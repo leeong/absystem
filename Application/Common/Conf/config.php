@@ -10,4 +10,12 @@ return array(
 
     //M三层 Service服务层 Logic逻辑层 Model数据层
     'DEFAULT_M_LAYER' => 'Service',//默认model层
+
+    //开启路由
+    'URL_ROUTER_ON' => true,
+    'URL_ROUTE_RULES'=>array(
+        'news/:year/:month/:day' => array('News/archive', 'status=1'),
+        'news/:id\d' => 'Admin/Index/index',
+        'news/read/:id\d' => 'Admin/Index/test',
+        ),
 );
