@@ -8,4 +8,9 @@ class AdminController extends Controller {
     {
         layout('Layout/admin');
     }
+
+    public function _empty()
+    {
+        echo "This action does not exist!";
+    }
 }
