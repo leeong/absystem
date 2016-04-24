@@ -1,17 +1,17 @@
 <?php
 namespace Admin\Controller;
 
-use Common\Controller\AdminController;
+use Think\Controller;
 
 /**
  * @desc    默认控制器
  * @author  leeong<9387524@gmail.com>
  */
-class DefaultController extends AdminController {
+class DefaultController extends Controller {
 
     public function _initialize()
     {
-        parent::_initialize();
+        layout(false);
     }
 
     /**
@@ -20,6 +20,7 @@ class DefaultController extends AdminController {
      */
     public function login()
     {
+        //写入session
         echo "this is login page!";
     }
 

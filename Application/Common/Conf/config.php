@@ -11,6 +11,9 @@ return array(
     //M三层 Service服务层 Logic逻辑层 Model数据层
     'DEFAULT_M_LAYER' => 'Service',//默认model层
 
+    //session 处理
+    'SESSION_TYPE'=>'Mysqli',
+
     //开启路由
     'URL_ROUTER_ON' => true,
     'URL_ROUTE_RULES'=>array(
