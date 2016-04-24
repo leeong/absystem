@@ -21,7 +21,7 @@ class DefaultController extends Controller {
     public function login()
     {
         //写入session
-        echo "this is login page!";
+        $this->display();
     }
 
     /**
@@ -42,5 +42,12 @@ class DefaultController extends Controller {
         echo "this is reg page!";
     }
 
+    /**
+     *  @desc 空操作
+     */
+    public function _empty()
+    {
+        redirect(U("Admin/Default/login"));
+    }
 
 }
