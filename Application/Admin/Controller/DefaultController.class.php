@@ -24,9 +24,14 @@ class DefaultController extends Controller
      */
     public function login()
     {
-        //写入session
         if (IS_POST) {
-        } else {
+            $arr = I("post.");
+            $result = D('admin', 'Service')->verifyForLogin($arr['name'], $arr['pwd']);
+            if ($result['status']) {
+                $this->success($result['info'], U("Admin/Index/index"));
+            } else {
+                $this->error($result['info'], U("Admin/Default/login"));
+            }
         }
         $this->display();
     }

@@ -1,7 +1,5 @@
 <?php
-namespace Admin\Model;
-
-use Think\Model\RelationModel;
+namespace Common\Service;
 
 /**
  *  [冻死迎风站]--[饿死不说么吃饭]
@@ -10,7 +8,18 @@ use Think\Model\RelationModel;
  * @author  leeong <9387524@gmail.com>
  * @version 1.0.0
  */
-class AdminModel extends RelationModel
+class AdminService
 {
+
+    private function _initialize()
+    {
+
+    }
+
+    // 登录验证
+    public function verifyForLogin($name, $pwd)
+    {
+        return D('admin', 'Logic')->verifyForLogin($name, $pwd);
+    }
 
 }

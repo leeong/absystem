@@ -6,8 +6,8 @@ class AdminController extends Controller {
 
     public function _initialize()
     {
-        $sessionAuthUserId = session(C('AUTH_USER_COLUMN'));
-        if (!$sessionAuthUserId) {
+        $sessionAuth = session(C('AUTH_USER'));
+        if (!$sessionAuth) {
             redirect(U('Admin/Default/login'));
         }
         layout('Layout/admin');
