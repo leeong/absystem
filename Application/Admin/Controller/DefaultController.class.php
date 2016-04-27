@@ -5,9 +5,13 @@ use Think\Controller;
 
 /**
  * @desc    默认控制器
- * @author  leeong<9387524@gmail.com>
+ * @access  private
+ * @param   string  $param
+ * @return  array   $array
+ * @author  leeong <9387524@gmail.com>
  */
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
 
     public function _initialize()
     {
@@ -21,6 +25,9 @@ class DefaultController extends Controller {
     public function login()
     {
         //写入session
+        if (IS_POST) {
+        } else {
+        }
         $this->display();
     }
 
