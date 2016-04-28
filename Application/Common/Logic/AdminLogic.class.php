@@ -23,7 +23,7 @@ class AdminLogic
             'info' => L('_ACTION_ERROR_'),
         );
         $condition['name'] = $name;
-        $adminRow = D('admin', 'Model')->fetchRow($condition);
+        $adminRow = D('Admin', 'Model')->fetchRow($condition);
         if (!$adminRow) {
             $return['info'] = L('_NAME_NOT_EXIST_');
             return $return;

@@ -4,11 +4,11 @@ namespace Admin\Controller;
 use Think\Controller;
 
 /**
- * @desc    默认控制器
- * @access  private
- * @param   string  $param
- * @return  array   $array
+ *  [冻死迎风站]--[饿死不说么吃饭]
+ *  =========================================================================@_@=====================================@_@
+ * @desc    登录注册控制器
  * @author  leeong <9387524@gmail.com>
+ * @version 1.0.0
  */
 class DefaultController extends Controller
 {
@@ -18,45 +18,34 @@ class DefaultController extends Controller
         layout(false);
     }
 
-    /**
-     *  @desc   登录
-     *  @author leeong <9387524@gmail.com>
-     */
+    // 登录
     public function login()
     {
         if (IS_POST) {
             $arr = I("post.");
-            $result = D('admin', 'Service')->verifyForLogin($arr['name'], $arr['pwd']);
+            $result = D('Admin', 'Service')->verifyForLogin($arr['name'], $arr['pwd']);
             if ($result['status']) {
-                $this->success($result['info'], U("Admin/Index/index"));
+                $this->success($result['info'], U("Admin/Dash/index"));
             } else {
-                $this->error($result['info'], U("Admin/Default/login"));
+                $this->error($result['info']);
             }
         }
         $this->display();
     }
 
-    /**
-     *  @desc   注销
-     *  @author leeong <9387524@gmail.com>
-     */
+    // 注销
     public function logout()
     {
         echo "this is logout page!";
     }
 
-    /**
-     *  @desc   注册
-     *  @author leeong <9387524@gmail.com>
-     */
+    // 注册
     public function reg()
     {
         echo "this is reg page!";
     }
 
-    /**
-     *  @desc 空操作
-     */
+    // 空操作
     public function _empty()
     {
         redirect(U("Admin/Default/login"));

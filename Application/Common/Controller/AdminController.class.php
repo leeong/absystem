@@ -4,7 +4,7 @@ use Think\Controller;
 
 class AdminController extends Controller {
 
-    public function _initialize()
+    protected function _initialize()
     {
         $sessionAuth = session(C('AUTH_USER'));
         if (!$sessionAuth) {

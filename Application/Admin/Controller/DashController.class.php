@@ -1,25 +1,25 @@
 <?php
-namespace Common\Service;
+namespace Admin\Controller;
+
+use Common\Controller\AdminController;
 
 /**
  *  [冻死迎风站]--[饿死不说么吃饭]
  *  =========================================================================@_@=====================================@_@
- * @desc
+ * @desc    仪表盘/操作中心
  * @author  leeong <9387524@gmail.com>
  * @version 1.0.0
  */
-class AdminService
+class DashController extends AdminController
 {
 
-    private function _initialize()
+    protected function _initialize()
     {
-
+        parent::_initialize();
     }
 
-    // 登录验证
-    public function verifyForLogin($name, $pwd)
+    public function index()
     {
-        return D('Admin', 'Logic')->verifyForLogin($name, $pwd);
+        $this->display();
     }
-
 }
