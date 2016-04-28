@@ -11,11 +11,10 @@ class AdminController extends Controller {
             redirect(U('Admin/Default/login'));
         }
         if (is_pjax()) {
-            show('is_pjax');
+            layout(false);
         } else {
-            show('is_not_pjax');
+            layout('Layout/admin');
         }
-        layout('Layout/admin');
     }
 
     public function _empty()

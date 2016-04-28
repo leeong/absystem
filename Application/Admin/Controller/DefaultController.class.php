@@ -36,7 +36,8 @@ class DefaultController extends Controller
     // 注销
     public function logout()
     {
-        echo "this is logout page!";
+        session(null);
+        redirect(U("Admin/Default/login"));
     }
 
     // 注册
