@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Matrix Admin</title>
+<title>ABSystem</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="__PUBLIC__/adminTpl/Matrixadmin/css/bootstrap.min.css" />
@@ -11,12 +11,15 @@
 <link rel="stylesheet" href="__PUBLIC__/adminTpl/Matrixadmin/css/matrix-media.css" />
 <link href="__PUBLIC__/adminTpl/Matrixadmin/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="__PUBLIC__/adminTpl/Matrixadmin/css/jquery.gritter.css" />
+<link rel="stylesheet" href="__PUBLIC__/adminTpl/Matrixadmin/css/select2.css" />
+<link rel="stylesheet" href="__PUBLIC__/adminTpl/Matrixadmin/css/uniform.css" />
+
 </head>
 <body>
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Matrix Admin</a></h1>
+  <h1><a href="{:U('Admin/Dash/index')}">ABSystem</a></h1>
 </div>
 <!--close-Header-part-->
 
@@ -117,7 +120,7 @@
 <!--End-breadcrumbs-->
 
 <!--Action boxes-->
-<div class="container-fluid">
+<div class="container-fluid" id="pjax-container">
       {__CONTENT__}
 </div>
 
@@ -134,7 +137,7 @@
 <!--end-Footer-part-->
 
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/excanvas.min.js"></script>
-<script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery.min.js"></script>
+<script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery-1.9.0.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery.ui.custom.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery.peity.min.js"></script>
@@ -151,10 +154,12 @@
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/matrix.popover.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery.dataTables.min.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/matrix.tables.js"></script>
+<script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery.pjax.js"></script>
 
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:
+  $(document).pjax('a', '#pjax-container');
   function goPage (newURL) {
 
       // if url is empty, skip the menu dividers and reset the menu selection to default

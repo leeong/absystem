@@ -22,4 +22,9 @@ class DashController extends AdminController
     {
         $this->display();
     }
+
+    public function charts()
+    {
+        $this->display();
+    }
 }

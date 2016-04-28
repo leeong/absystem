@@ -10,6 +10,11 @@ class AdminController extends Controller {
         if (!$sessionAuth) {
             redirect(U('Admin/Default/login'));
         }
+        if (is_pjax()) {
+            show('is_pjax');
+        } else {
+            show('is_not_pjax');
+        }
         layout('Layout/admin');
     }
 
