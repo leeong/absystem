@@ -52,4 +52,9 @@ class DefaultController extends Controller
         redirect(U("Admin/Default/login"));
     }
 
+    public function error()
+    {
+        $this->display('Default/404');
+    }
+
 }

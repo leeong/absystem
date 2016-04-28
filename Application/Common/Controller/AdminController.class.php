@@ -11,14 +11,18 @@ class AdminController extends Controller {
             redirect(U('Admin/Default/login'));
         }
         if (is_pjax()) {
+            show('is_pjax');
             layout(false);
         } else {
+            show('is_not_pjax');
             layout('Layout/admin');
         }
     }
 
+    //todo 是pjax时返回带hidden input 前端通过接受判断进行URL跳转
     public function _empty()
     {
-        echo "This action does not exist!";
+        redirect(U('Admin/Default/error'));
     }
+
 }
