@@ -2,7 +2,7 @@
 namespace Common\Controller;
 
 use Think\Controller;
-use Think\Auth;
+use Think\Access;
 
 class AdminController extends Controller {
 
@@ -14,10 +14,12 @@ class AdminController extends Controller {
         }
 
         // 权限判断
-        $auth = new Auth();
-        if(!$auth->check(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME, session(C('AUTH_USER_COLUMN')))){
-            $this->error('你没有权限',U('Admin/Dash/index'));
-        }
+        // $auth = new Auth();
+        // if(!$auth->check(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME, session(C('AUTH_USER_COLUMN')))){
+        //     $this->error('你没有权限',U('Admin/Dash/index'));
+        // }
+        $access = new Access();
+        $admin = $access->getAuthList(5);
 
         if (is_pjax()) {
             // show('is_pjax');
