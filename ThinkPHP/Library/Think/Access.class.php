@@ -15,7 +15,7 @@ class Access{
         'AUTH_GROUP'        => 'auth_group',        // 用户组数据表名
         'AUTH_GROUP_ACCESS' => 'auth_group_access', // 用户-用户组关系表
         'AUTH_RULE'         => 'auth_rule',         // 权限规则表
-        'AUTH_USER'         => 'admin'             // 用户信息表
+        'AUTH_USER'         => 'admin'              // 用户信息表
     );
 
     public function __construct()
@@ -36,8 +36,8 @@ class Access{
      *  =====================================================================@_@=====================================@_@
      * @access  public
      * @param   string    $name       需要验证的权限
-     * @param   int             $uid        认证用户ID
-     * @return  boolean                     通过返回true 否则false
+     * @param   int       $uid        认证用户ID
+     * @return  boolean               通过返回true 否则false
      * @author  leeong <9387524@gmail.com>
      */
     public function check($name, $uid)
@@ -45,8 +45,7 @@ class Access{
         if (!$this->_config['AUTH_ON'])
             return true;
         $authList = $this->getAuthList($uid); //获取用户需要验证的所有有效规则列表
-
-        return false;
+        return in_array($name, $authList);
     }
 
     /**
@@ -57,7 +56,7 @@ class Access{
      * @return  array           所有name的array
      * @author  leeong <9387524@gmail.com>
      */
-    public function getAuthList($uid)
+    protected function getAuthList($uid)
     {
         static $_authList = array(); //保存用户验证通过的权限列表
         if (isset($_authList[$uid])) {
@@ -74,54 +73,78 @@ class Access{
             $_authList[$uid] = array();
             return array();
         }
-
         $map=array(
-            'id'=>array('in',$ids),
+            'id'=>array('in',$ruleIds),
             'status'=>1,
         );
-        //读取用户组所有权限规则
+
+        //读取用户组所有权限name
         $rules = M()
             ->table($this->_config['AUTH_RULE'])
             ->where($map)
             ->field('name')
             ->select();
-
-        //循环规则，判断结果。
-        $authList = array();   //
-        foreach ($rules as $rule) {
-            if (!empty($rule['condition'])) { //根据condition进行验证
-                $user = $this->getUserInfo($uid);//获取用户信息,一维数组
-
-                $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
-                //dump($command);//debug
-                @(eval('$condition=(' . $command . ');'));
-                if ($condition) {
-                    $authList[] = strtolower($rule['name']);
-                }
-            } else {
-                //只要存在就记录
-                $authList[] = strtolower($rule['name']);
-            }
+        if (empty($rules)) {
+            $_authList[$uid] = array();
+            return array();
         }
-        $_authList[$uid.$t] = $authList;
-        if($this->_config['AUTH_TYPE']==2){
-            //规则列表结果保存到session
-            $_SESSION['_AUTH_LIST_'.$uid.$t]=$authList;
-        }
-        return array_unique($authList);
+        $_SESSION['_AUTH_LIST_'.$uid] = $_authList[$uid] = $authList = array_map('array_shift', $rules);
+
+        return $authList;
     }
 
     /**
      * @desc    获取用户的菜单列表
      *  =====================================================================@_@=====================================@_@
      * @access  public
-     * @param   string  $param
-     * @return  array   $array
+     * @param   string  $uid    用户ID
+     * @return  array           菜单二维序列数组
      * @author  leeong <9387524@gmail.com>
      */
     public function getMenu($uid)
     {
+        static $_menuList = array(); //保存用户验证通过的菜单列表
+        if (isset($_menuList[$uid])) {
+            return $_menuList[$uid];
+        }
+        if (isset($_SESSION['_MENU_LIST_'.$uid])) {
+            return $_SESSION['_MENU_LIST_'.$uid];
+        }
 
+        //获取权限ids列表
+        $menuIds = $this->getRules($uid);
+
+        if (empty($menuIds)) {
+            $_menuList[$uid] = array();
+            return array();
+        }
+        $map=array(
+            'id'        =>  array('in',$menuIds),
+            'is_link'   =>  1,
+            'status'    =>  1,
+        );
+
+        //读取用户组所有权限name
+        $menus = M()
+            ->table($this->_config['AUTH_RULE'])
+            ->where($map)
+            ->field('id,name,title_code,pid,icon')
+            ->order('pid,sort')
+            ->select();
+        if (empty($menus)) {
+            $_menuList[$uid] = array();
+            return array();
+        }
+        $menusSort = array_reduce($menus,
+            function($v, $w) {
+                $v[$w['pid']][] = $w;
+                return $v;
+            }
+        );
+
+        $_SESSION['_MENU_LIST_'.$uid] = $_menuList[$uid] = $menusSort;
+
+        return $menusSort;
     }
     /**
      * @desc    获取用户的用户组
@@ -140,7 +163,8 @@ class Access{
             ->table($this->_config['AUTH_GROUP_ACCESS'] . ' a')
             ->where("a.id='$uid' and g.status='1'")
             ->join($this->_config['AUTH_GROUP']." g on a.group_id=g.id")
-            ->field('g.id,title_code,rules')->select();
+            ->field('g.id,title_code,rules')
+            ->select();
         $groups[$uid]=$user_groups?:array();
         return $groups[$uid];
     }
@@ -149,8 +173,8 @@ class Access{
      * @desc    获取用户的权限ids列表
      *  =====================================================================@_@=====================================@_@
      * @access  public
-     * @param   string  $param
-     * @return  array   $array
+     * @param   string  $uid    用户ID
+     * @return  array           规则ID一维数组
      * @author  leeong <9387524@gmail.com>
      */
     public function getRules($uid)

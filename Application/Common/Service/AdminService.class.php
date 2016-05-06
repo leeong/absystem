@@ -16,6 +16,12 @@ class AdminService
 
     }
 
+    // 获取列表
+    public function getList($conditon, $field, $order)
+    {
+
+    }
+
     // 登录验证
     public function verifyForLogin($name, $pwd)
     {

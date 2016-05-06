@@ -14,19 +14,23 @@ class AdminController extends Controller {
         }
 
         // 权限判断
-        // $auth = new Auth();
-        // if(!$auth->check(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME, session(C('AUTH_USER_COLUMN')))){
-        //     $this->error('你没有权限',U('Admin/Dash/index'));
-        // }
-        $access = new Access();
-        $admin = $access->getAuthList(5);
+        $auth = new Access();
+        if(!$auth->check(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME, session(C('AUTH_USER_COLUMN')))){
+            $this->error('你没有权限',U('Admin/Dash/index'));
+        }
 
-        if (is_pjax()) {
+
+        if (array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX']) {
             // show('is_pjax');
             layout(false);
         } else {
             // show('is_not_pjax');
             // todo 加载菜单项
+
+            $menuTotal = $auth->getMenu(session(C('AUTH_USER_COLUMN')));
+            $menuModule = current($menuTotal);
+            $this->assign('menuModule', $menuModule)
+                ->assign('menuAction', $menuTotal);
             layout('Layout/admin');
         }
     }

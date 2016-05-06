@@ -14,6 +14,13 @@ return array(
     //session 处理
     'SESSION_TYPE'=>'Mysqli',
 
+    'SESSION_OPTIONS'         =>  array(
+            'name'                =>  'ABSSESSION',      //设置session名
+            'expire'              =>  24*3600,           //SESSION保存1天
+            'use_trans_sid'       =>  1,                 //跨页传递
+            'use_only_cookies'    =>  0,                 //是否只开启基于cookies的session的会话方式
+        ),
+
     //多语言配置
     'LANG_SWITCH_ON' => true, // 开启语言包功能
     'DEFAULT_LANG' => 'en-us',
