@@ -23,7 +23,7 @@ class DefaultController extends Controller
     {
         if (IS_POST) {
             $arr = I("post.");
-            $result = D('Admin', 'Service')->verifyForLogin($arr['name'], $arr['pwd']);
+            $result = D('Admin', 'Logic')->verifyForLogin($arr['name'], $arr['pwd']);
             if ($result['status']) {
                 $this->success($result['info'], U("Admin/Dash/index"));
             } else {
