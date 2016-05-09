@@ -16,6 +16,11 @@ class AdminLogic
 
     }
 
+    public function map()
+    {
+
+    }
+
     public function verifyForLogin($name, $pwd)
     {
         $return = array(
@@ -36,6 +41,11 @@ class AdminLogic
         $return['status'] = 1;
         $return['info'] = L('_VERIFY_SUCCESS_');
         return $return;
+    }
+
+    public function getList()
+    {
+        
     }
 
     public function encrypt($basePwd)
