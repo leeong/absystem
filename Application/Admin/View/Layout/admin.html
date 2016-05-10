@@ -76,13 +76,13 @@
                     <a href="#"><i class="icon {$menuRow[icon]?$menuRow[icon]:''}"></i> <span>{:L($menuRow[title_code])}</span> <span class="label label-important">{:count($menuAction[$menuRow[id]])}</span></a>
                     <ul>
                         <php>foreach ($menuAction[$menuRow[id]] as $menuNumLow => $menuRowLow) {</php>
-                            <li><a href="/{$menuRowLow[name]}">&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon icon-chevron-right"></i>{:L($menuRowLow[title_code])}</a></li>
+                            <li><a href="/{$Think.const.MODULE_NAME}/{$menuRowLow[name]}">&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon icon-chevron-right"></i>{:L($menuRowLow[title_code])}</a></li>
                         <php>}</php>
                     </ul>
                 </li>
             <php>} else {</php>
                 <li>
-                    <a href="/{$menuRow[name]}"><i class="icon {$menuRow[icon]?$menuRow[icon]:''}"></i> <span>{:L($menuRow[title_code])}</span></a>
+                    <a href="/{$Think.const.MODULE_NAME}/{$menuRow[name]}/index"><i class="icon {$menuRow[icon]?$menuRow[icon]:''}"></i> <span>{:L($menuRow[title_code])}</span></a>
                 </li>
             <php>}</php>
         <php>}</php>

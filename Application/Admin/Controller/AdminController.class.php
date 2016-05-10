@@ -14,7 +14,9 @@ class AdminController extends BaseAdminController
 {
     public function index()
     {
-        $list = D('Admin', 'Logic')->getList();
+        $listData = D('Admin', 'Logic')->getList();
+        $this->assign('page', $listData['page'])
+            ->assign('Adminlist', $listData['list']);
         $this->display();
     }
 

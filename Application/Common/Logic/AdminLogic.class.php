@@ -43,9 +43,9 @@ class AdminLogic
         return $return;
     }
 
-    public function getList()
+    public function getList($map = '1=1', $field = '*', $order = 'id')
     {
-        
+        return D('Admin')->getList();
     }
 
     public function encrypt($basePwd)

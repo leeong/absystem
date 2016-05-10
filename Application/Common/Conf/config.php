@@ -1,7 +1,7 @@
 <?php
 return array(
 	//'配置项'=>'配置值'
-    'DEFAULT_MODULE' => 'Admin',//默认模块
+    // 'DEFAULT_MODULE' => 'Admin',//默认模块
     'URL_MODEL' => '2',//URL类型
     'SESSION_AUTO_START' => 'true',//开启SESSION
     'LOAD_EXT_CONFIG' => 'db',//扩展配置
