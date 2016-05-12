@@ -34,7 +34,7 @@ class AdminModel extends RelationModel
         $list = $this->where($map)->order($order)->page($_GET['p'].','.$perPage)->select();
 
         $count = $this->where($map)->count();// 查询满足要求的总记录数
-        $Page = new \Think\Page($count,$perPage);// 实例化分页类 传入总记录数和每页显示的记录数
+        $Page = new \Think\AdminPage($count,$perPage);// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
         return array(
             'page' => $show,
