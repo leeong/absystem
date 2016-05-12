@@ -16,4 +16,8 @@ return array(
     '_NAME_NOT_EXIST_' => '姓名不存在',
     '_PASSWORD_ERROR_' => '密码错误',
     '_VERIFY_SUCCESS_' => '验证通过',
+    '_PREV_' => '<<',
+    '_FIRST_' => '首页',
+    '_NEXT_' => '>>',
+    '_LAST_' => '尾页',
 );

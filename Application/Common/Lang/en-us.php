@@ -16,4 +16,8 @@ return array(
     '_NAME_NOT_EXIST_' => 'The name does not exist',
     '_PASSWORD_ERROR_' => 'The password is error',
     '_VERIFY_SUCCESS_' => 'Verify successful',
+    '_PREV_' => 'Prev',
+    '_FIRST_' => 'First',
+    '_NEXT_' => 'Next',
+    '_LAST_' => 'Last',
 );

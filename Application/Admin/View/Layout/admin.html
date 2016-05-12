@@ -147,14 +147,16 @@
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery.uniform.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/select2.min.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/matrix.popover.js"></script>
-<script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery.dataTables.min.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/matrix.tables.js"></script>
 <script src="__PUBLIC__/adminTpl/Matrixadmin/js/jquery.pjax.js"></script>
 
 <script type="text/javascript">
     // This function is called from the pop-up menus to transfer to
     // a different page. Ignore if the value returned is a null string:
-    $(document).pjax('a', '#pjax-container');
+    $(document).pjax('a', '#pjax-container'c){
+        $('input[type=checkbox],input[type=radio],input[type=file]').uniform();
+    	$('.tip-bottom').tooltip({ placement: 'bottom' });
+    };
     function goPage(newURL) {
 
         // if url is empty, skip the menu dividers and reset the menu selection to default

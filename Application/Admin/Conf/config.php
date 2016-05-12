@@ -4,7 +4,7 @@ return array(
     'AUTH_USER'         =>  'admin',
     'AUTH_USER_COLUMN'  =>  'admin.id',
 
-    'PER_PAGE'          =>  '1',
+    'PER_PAGE'          =>  '10',
     //auth 配置
     'AUTH_CONFIG'       =>  array(
         'AUTH_GROUP'        =>  'auth_group',           //用户组数据表名
