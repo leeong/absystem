@@ -20,4 +20,6 @@ return array(
     '_FIRST_' => 'First',
     '_NEXT_' => 'Next',
     '_LAST_' => 'Last',
+    '_TOTAL_' => 'Total',
+    '_ENTRY_' => 'entries',
 );

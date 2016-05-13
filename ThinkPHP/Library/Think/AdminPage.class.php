@@ -83,6 +83,9 @@ class AdminPage
             $the_end = '<li><a href="' . $this->url($this->totalPages) . '"  class="tip-bottom" data-original-title="total:' . $this->totalPages . ' rows ' . $this->totalRows . ' page">' . L('_LAST_') . '</a></li>';
         }
 
+        // the_total(统计)
+        $the_total = '<li class="disabled"><a>'.L('_TOTAL_').' '.$this->totalRows.' '.L('_ENTRY_').' '.$this->nowPage.'/'.$this->totalPages.'</a></li>';
+
         //数字连接
         $link_page = "";
         for ($i = 1; $i <= $this->rollPage; $i++) {
@@ -108,6 +111,6 @@ class AdminPage
         }
         $link_page || $link_page = '<li class="active"><a>'. $this->nowPage . '</a><li>';
 
-        return "<div class='pagination alternate'><ul>{$the_first}{$up_page}{$link_page}{$down_page}{$the_end}</ul></div>";
+        return "<div class='pagination alternate pull-right' style='margin:5px 25px 0 0'><ul>{$the_total}{$the_first}{$up_page}{$link_page}{$down_page}{$the_end}</ul></div>";
     }
 }

@@ -20,4 +20,6 @@ return array(
     '_FIRST_' => '首页',
     '_NEXT_' => '>>',
     '_LAST_' => '尾页',
+    '_TOTAL_' => '共',
+    '_ENTRY_' => '条记录',
 );
