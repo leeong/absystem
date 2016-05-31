@@ -29,15 +29,11 @@ class AdminModel extends RelationModel
     //取列表
     public function getList($map = '1=1', $field = '*', $order = 'id')
     {
-        $perPage = I('get.per_page')?I('get.per_page'):C('PER_PAGE');
         // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
         $list = $this->where($map)->order($order)->page($_GET['p'].','.$perPage)->select();
-
         $count = $this->where($map)->count();// 查询满足要求的总记录数
-        $Page = new \Think\AdminPage($count,$perPage);// 实例化分页类 传入总记录数和每页显示的记录数
-        $show = $Page->show();// 分页显示输出
         return array(
-            'page' => $show,
+            'count' => $count,
             'list' => $list,
         );
     }

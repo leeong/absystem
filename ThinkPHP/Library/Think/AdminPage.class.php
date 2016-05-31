@@ -70,17 +70,17 @@ class AdminPage
             $up_page = '<li class="disabled"><a>' . L('_PREV_') . '</a></li>';
             $the_first = '<li class="disabled"><a>' . L('_FIRST_') . '</a></li>';
         } else {
-            $up_page = '<li><a href="' . $this->url($this->nowPage - $now_cool_page_ceil) . '">' . L('_PREV_') . '</a></li>';
-            $the_first = '<li><a href="' . $this->url(1) . '">' . L('_FIRST_') . '</a></li>';
+            $up_page = '<li><a data-pjax href="' . $this->url($this->nowPage - $now_cool_page_ceil) . '">' . L('_PREV_') . '</a></li>';
+            $the_first = '<li><a data-pjax href="' . $this->url(1) . '">' . L('_FIRST_') . '</a></li>';
         }
 
         // down_page(下一页)  the_end(最后一页)
         if ($this->nowPage + $now_cool_page_ceil > $this->totalPages) {
             $down_page = '<li class="disabled"><a>' . L('_NEXT_') . '</a></li>';
-            $the_end = '<li class="disabled"><a class="tip-bottom" data-original-title="total:' . $this->totalPages . ' rows ' . $this->totalRows . ' page">' . L('_LAST_') . '</a></li>';
+            $the_end = '<li class="disabled"><a data-pjax class="tip-bottom" data-original-title="total:' . $this->totalPages . ' rows ' . $this->totalRows . ' page">' . L('_LAST_') . '</a></li>';
         } else {
-            $down_page = '<li><a href="' . $this->url($this->nowPage + $now_cool_page_ceil) . '">' . L('_NEXT_') . '</a></li>';
-            $the_end = '<li><a href="' . $this->url($this->totalPages) . '"  class="tip-bottom" data-original-title="total:' . $this->totalPages . ' rows ' . $this->totalRows . ' page">' . L('_LAST_') . '</a></li>';
+            $down_page = '<li><a data-pjax href="' . $this->url($this->nowPage + $now_cool_page_ceil) . '">' . L('_NEXT_') . '</a></li>';
+            $the_end = '<li><a data-pjax href="' . $this->url($this->totalPages) . '"  class="tip-bottom" data-original-title="total:' . $this->totalPages . ' rows ' . $this->totalRows . ' page">' . L('_LAST_') . '</a></li>';
         }
 
         // the_total(统计)
@@ -99,7 +99,7 @@ class AdminPage
             if ($page > 0 && $page != $this->nowPage) {
 
                 if ($page <= $this->totalPages) {
-                    $link_page .= '<li><a href="' . $this->url($page) . '">' . $page . '</a></li>';
+                    $link_page .= '<li><a data-pjax href="' . $this->url($page) . '">' . $page . '</a></li>';
                 } else {
                     break;
                 }
