@@ -1,7 +1,7 @@
 <?php
 namespace Common\Model;
 
-use Think\Model\RelationModel;
+use Common\Model\CommonModel;
 
 /**
  *  [冻死迎风站]--[饿死不说么吃饭]
@@ -10,7 +10,7 @@ use Think\Model\RelationModel;
  * @author  leeong <9387524@gmail.com>
  * @version 1.0.0
  */
-class AdminModel extends RelationModel
+class AdminModel extends CommonModel
 {
 
     protected $_validate = array(
@@ -26,30 +26,7 @@ class AdminModel extends RelationModel
 
     }
 
-    //取列表
-    public function getList($map = '1=1', $field = '*', $order = 'id')
-    {
-        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
-        $list = $this->where($map)->order($order)->page($_GET['p'].','.$perPage)->select();
-        $count = $this->where($map)->count();// 查询满足要求的总记录数
-        return array(
-            'count' => $count,
-            'list' => $list,
-        );
-    }
 
-    //取一条数据
-    public function fetchRow($map = '1=1', $field = '*')
-    {
-        return $this->where($map)
-                ->find();
-    }
-
-    //取多条数据
-    public function fetchAll($map = '1=1', $field = '*', $order = 'id')
-    {
-
-    }
 
 
 }

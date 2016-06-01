@@ -77,13 +77,11 @@ class AdminController extends Controller {
         }
     }
 
-    // 后台分页
-    protected function page($total_size = 1, $page_size = 0) {
-        if ($page_size == 0) {
-            $page_size = C("PER_PAGE");
-        }
-        $Page = new \Think\AdminPage($count,$perPage);// 实例化分页类 传入总记录数和每页显示的记录数
-        $show = $Page->show();// 分页显示输出
+    // 分页
+    protected function page($totalSize = 1, $perPage) {
+        $perPage = $perPage ? $perPage : C('PER_PAGE');
+        $page = new \Think\AdminPage($totalSize,$perPage);// 实例化分页类 传入总记录数和每页显示的记录数
+        return $page->show();// 分页显示输出
     }
 
 }

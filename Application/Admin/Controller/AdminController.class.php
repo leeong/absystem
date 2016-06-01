@@ -14,9 +14,11 @@ class AdminController extends BaseAdminController
 {
     public function index()
     {
-        $listData = D('Admin', 'Logic')->getList();
-        $this->assign('page', $listData['page'])
-            ->assign('Adminlist', $listData['list']);
+        $adminModel = D('Admin', 'Model');
+        $listData =$adminModel->getList();
+        $page = $this->page($adminModel->__get(C('VAR_COUNT')));
+        $this->assign('Adminlist', $listData)
+            ->assign('page', $page);
         $this->display();
     }
 
