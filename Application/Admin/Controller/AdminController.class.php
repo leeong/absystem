@@ -16,7 +16,7 @@ class AdminController extends BaseAdminController
     {
         $adminModel = D('Admin', 'Model');
         $listData =$adminModel->getList();
-        $page = $this->page($adminModel->__get(C('VAR_COUNT')));
+        $page = $this->page($adminModel->getParam('count'));
         $this->assign('Adminlist', $listData)
             ->assign('page', $page);
         $this->display();

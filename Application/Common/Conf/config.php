@@ -13,8 +13,6 @@ return array(
 
     //分页参数名
     'VAR_PAGE' => 'p',
-    //设置查询结果总条目参数
-    'VAR_COUNT' => 'count',
     //session 处理
     'SESSION_TYPE'=>'Mysqli',
 
