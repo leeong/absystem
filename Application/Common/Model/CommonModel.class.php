@@ -52,8 +52,6 @@ class CommonModel extends Model
         if (!$row) {
             return $field == '*' ? $this->fields : $field;
         }
-
-
     }
 
     // 重新定义order order存储于cookies

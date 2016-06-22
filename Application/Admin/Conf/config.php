@@ -12,5 +12,5 @@ return array(
         'AUTH_RULE'         =>  'auth_rule',            //权限规则表
         'AUTH_USER'         =>  'admin',                //用户信息表
         'AUTH_ON'           =>  false,                  //关闭验证
-    )
+    ),
 );
