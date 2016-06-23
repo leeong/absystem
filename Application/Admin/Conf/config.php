@@ -13,4 +13,5 @@ return array(
         'AUTH_USER'         =>  'admin',                //用户信息表
         'AUTH_ON'           =>  false,                  //关闭验证
     ),
+    'LAYOUT_TEMPLATE'       => 'Layout/admin',
 );

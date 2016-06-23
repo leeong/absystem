@@ -22,7 +22,7 @@ class AdminController extends Controller {
 
         if (array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX']) {
             // show('is_pjax');
-            layout(false);
+            layoutAdmin(false);
         } else {
             // show('is_not_pjax');
             // todo 加载菜单项
@@ -31,7 +31,7 @@ class AdminController extends Controller {
             $menuModule = current($menuTotal);
             $this->assign('menuModule', $menuModule)
                 ->assign('menuAction', $menuTotal);
-            layout('Layout/admin');
+            layoutAdmin(true);
         }
     }
 
@@ -82,6 +82,30 @@ class AdminController extends Controller {
         $perPage = $perPage ? $perPage : C('PER_PAGE');
         $page = new \Think\AdminPage($totalSize,$perPage);// 实例化分页类 传入总记录数和每页显示的记录数
         return $page->show();// 分页显示输出
+    }
+
+    /**
+     *  获取输出页面内容
+     * 调用内置的模板引擎fetch方法，
+     * @access protected
+     * @param string $templateFile 指定要调用的模板文件
+     * 默认为空 由系统自动定位模板文件
+     * @param string $content 模板输出内容
+     * @param string $prefix 模板缓存前缀*
+     * @return string
+     */
+    protected function fetch($templateFile='',$content='',$prefix='') {
+
+        if (C('LAYOUT_ON') == true) {
+            $layoutName = C('LAYOUT_TEMPLATE');
+            C('LAYOUT_ON', false);
+        }
+        $dom = $this->view->fetch($templateFile,$content,$prefix);
+        if ($layoutName) {
+            C('LAYOUT_ON', true);
+            C('LAYOUT_NAME', $layoutName);
+        }
+        return $dom;
     }
 
 }

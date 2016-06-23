@@ -22,5 +22,4 @@ class AdminController extends BaseAdminController
             ->assign('page', $page);
         $this->display();
     }
-
 }
