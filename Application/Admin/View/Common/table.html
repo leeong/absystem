@@ -1,18 +1,20 @@
 <thead>
-  <tr>
-    <th><input type="checkbox"/></th>
-    <th>Column name</th>
-    <th>Column name</th>
-    <th>Column name</th>
-    <th>Column name</th>
-  </tr>
+    <tr>
+        <th><input type="checkbox"/></th>
+        <volist name="listData.comment" id="vo">
+            <th>
+                {$vo}
+            </th>
+        </volist>
+    </tr>
 </thead>
 <tbody>
-  <tr>
-    <td><input type="checkbox" /></td>
-    <td>Row 1</td>
-    <td>Row 2</td>
-    <td>Row 3</td>
-    <td>Row 4</td>
-  </tr>
+    <volist name="listData.list" id="row">
+        <tr>
+            <td><input type="checkbox" /></td>
+            <volist name="row" id="vo">
+                <td>{$vo}</td>
+            </volist>
+        </tr>
+    </volist>
 </tbody>

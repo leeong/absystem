@@ -12,12 +12,12 @@ use Think\Model;
  */
 class CommonModel extends Model
 {
-    protected $fields = array();
-    protected $count = 0;
+    protected $_fields = array();
+    protected $_count = 0;
 
     protected function _initialize()
     {
-        $this->fields = parent::$fields;
+
     }
 
     //获取参数
@@ -29,17 +29,21 @@ class CommonModel extends Model
     public function getList($map = '1=1', $field = '*', $order = 'id', $flag = 1)
     {
         // 记录满足要求的总记录数 分页用
-        $this->count = $this->where($map)->count();
+        $this->_count = $this->where($map)->count();
         // 处理field参数 并加载用户配置
-        $field = $this->_fieldPro($field, $flag);
-        $order = $this->_orderPro($order, $flag);
+        // $field = $this->_fieldPro($field, $flag);
+        // $order = $this->_orderPro($order, $flag);
         $list = $this
             ->field($field)
             ->where($map)
             ->order($order)
             ->page($_GET[C('VAR_PAGE')] ? $_GET[C('VAR_PAGE')] : 1 . ',' . C('PER_PAGE'))
             ->select();
-        return $list;
+        $comment = $this->_comment();
+        return array(
+            'list' => $list,
+            'comment' => $comment,
+        );
     }
 
     // 重新定义field 显示的field存储于数据库
@@ -50,14 +54,34 @@ class CommonModel extends Model
         $map['option_key'] = MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME;
         $row = D('Option', 'Model')->fetchRow($map, array('option_val'));
         if (!$row) {
-            return $field == '*' ? $this->fields : $field;
+            return $field == '*' ? $this->_fields : $field;
         }
+        return $row['option_val'];
     }
 
     // 重新定义order order存储于cookies
     private function _orderPro($order = 'id', $flag = 1)
     {
 
+    }
+
+    // 定义字段注释
+    private function _comment()
+    {
+        $comment = $this->_comment[strtolower(cookie('think_language'))];
+        $field = $this->fields;
+        $result = array();
+        foreach ($comment as $key => $val) {
+            if (in_array($key, $field))
+                $result[$key] = $val;
+        }
+        foreach ($field as $key => $val) {
+            if (is_numeric($key)) {
+                if (!$result[$val])
+                    $result[$val] = $val;
+            }
+        }
+        return $result;
     }
 
     //取一条数据

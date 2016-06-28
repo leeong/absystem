@@ -16,6 +16,7 @@ class AdminController extends BaseAdminController
     {
         $adminModel = D('Admin', 'Model');
         $listData =$adminModel->getList();
+        $this->assign('listData', $listData);
         $tableDom = $this->fetch("Common/table");
         $page = $this->page($adminModel->getParam('count'));
         $this->assign('tableDom', $tableDom)

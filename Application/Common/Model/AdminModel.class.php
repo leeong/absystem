@@ -12,6 +12,28 @@ use Common\Model\CommonModel;
  */
 class AdminModel extends CommonModel
 {
+    protected $_comment = array(
+        'en-us' => array(
+            'id' => 'No.',
+            'name' => 'Name',
+            'email' => 'E-mail',
+            'pwd' => 'Password',
+            'role_id' => "Role's ID",
+            'status' => 'Status',
+            'at' => 'Add Time',
+            'ut' => 'Update Time',
+        ),
+        'zh-cn' => array(
+            'id' => '序号',
+            'name' => '姓名',
+            'email' => '邮箱',
+            'pwd' => '密码',
+            'role_id' => "角色ID",
+            'status' => '状态',
+            'at' => '添加时间',
+            'ut' => '更新时间',
+        )
+    );
 
     protected $_validate = array(
             array('verify','require','验证码必须!'), //默认情况下用正则进行验证
@@ -23,7 +45,7 @@ class AdminModel extends CommonModel
 
     protected function _initialize()
     {
-
+        parent::_initialize();
     }
 
 
