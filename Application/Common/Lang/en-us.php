@@ -22,4 +22,5 @@ return array(
     '_LAST_' => 'Last',
     '_TOTAL_' => 'Total',
     '_ENTRY_' => 'entries',
+    '_CONFIG_' => 'Config',
 );

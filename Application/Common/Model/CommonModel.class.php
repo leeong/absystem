@@ -37,7 +37,8 @@ class CommonModel extends Model
             ->field($field)
             ->where($map)
             ->order($order)
-            ->page($_GET[C('VAR_PAGE')] ? $_GET[C('VAR_PAGE')] : 1 . ',' . C('PER_PAGE'))
+            ->page($_GET[C('VAR_PAGE')] ? $_GET[C('VAR_PAGE')] : 1)
+            ->limit(C('PER_PAGE'))
             ->select();
         $comment = $this->_comment();
         return array(
@@ -71,14 +72,15 @@ class CommonModel extends Model
         $comment = $this->_comment[strtolower(cookie('think_language'))];
         $field = $this->fields;
         $result = array();
-        foreach ($comment as $key => $val) {
-            if (in_array($key, $field))
-                $result[$key] = $val;
-        }
+
         foreach ($field as $key => $val) {
             if (is_numeric($key)) {
-                if (!$result[$val])
-                    $result[$val] = $val;
+                if ($comment[$val]){
+                    $result['comment'][$val] = $comment[$val];
+                } else {
+                    $result['comment'][$val] = $val;
+                }
+                $result['field'] = $val;
             }
         }
         return $result;

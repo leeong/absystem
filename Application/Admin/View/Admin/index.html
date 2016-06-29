@@ -11,17 +11,18 @@
     </div>
 
     <div class="widget-box">
-      <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-        <h5>Static table with checkboxes in box with padding</h5>
-        <a class="btn btn-mini btn-info ">Featured</a>
-    </div>
-      <div class="widget-content nopadding">
-        <table class="table table-bordered table-striped with-check">
-            {$tableDom}
-        </table>
-      </div>
-      <div class="widget-title">
-          {$page}
-      </div>
+        <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>Static table with checkboxes in box with padding</h5>
+            <a type="button" class="btn btn-primary btn-mini" data-toggle="modal" data-target="#config">{:L('_CONFIG_')}</a>
+        </div>
+        <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped with-check">
+                {$tableDom}
+            </table>
+        </div>
+        <div class="widget-title">
+            {$page}
+        </div>
     </div>
 </div>
+<include file="Common/config" />

@@ -22,4 +22,5 @@ return array(
     '_LAST_' => '尾页',
     '_TOTAL_' => '共',
     '_ENTRY_' => '条记录',
+    '_CONFIG_' => '配置',
 );
